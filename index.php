@@ -13,14 +13,14 @@ $rows = $sth->fetchAll(PDO::FETCH_ASSOC);
 //     echo '<td>'.$row['p.name'].'</td>';
 //     echo '<td>'.$row['p.reference'].'</td>';
 //     echo '<td>'.$row['c.type'].'</td>';
+//     echo '<td>'.$row['s.name'].'</td>';
+//     echo '<td>'.$row['s.address'].'</td>';
 //     echo '<td>'.$dateFr->format(strtotime($row['p.purchasedate'])).'</td>';
 //     echo '<td>'.$dateFr->format(strtotime($row['p.warrantydate'])).'</td>';
 //     echo '<td>'.$row['p.price'].'</td>';
 //     echo '<td>'.$row['p.purchaseticket'].'</td>';
 //     echo '<td>'.$row['p.maintenance'].'</td>';
 //     echo '<td>'.$row['p.usermanual'].'</td>';
-//     echo '<td>'.$row['s.name'].'</td>';
-//     echo '<td>'.$row['s.address'].'</td>';
 //     echo '<td><a href="edit.php?edit=1&id='.$row['p.id'].'">Modifier</a></td>';
 //     echo '<td><a href="delete.php?id='.$row['p.id'].'">Supprimer</a></td>';
 
@@ -31,14 +31,14 @@ $rows = array(
     'name' => $row['p.name'],
     'reference' => $row['p.reference'],
     'category' => $row['c.type'],
+    'seller' => $row['s.name'],
+    'address' => $row['s.address'],
     'purchasedate' => $dateFr->format(strtotime($row['p.purchasedate'])),
     'warrantydate' => $dateFr->format(strtotime($row['p.warrantydate'])),
     'price' => $row['p.price'],
     'purchaseticket' => $row['p.purchaseticket'],
     'maintenance' => $row['p.maintenance'],
     'usermanual' => $row['p.usermanual'],
-    'seller' => $row['s.name'],
-    'address' => $row['s.address'],
     'edit' => '<a href="edit.php?edit=1&id='.$row['p.id'].'">Modifier</a>',
     'delete' => '<a href="delete.php?id='.$row['p.id'].'">Supprimer</a>',
 );
