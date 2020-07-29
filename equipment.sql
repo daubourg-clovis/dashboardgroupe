@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  mar. 28 juil. 2020 à 08:40
+-- Généré le :  mer. 29 juil. 2020 à 07:30
 -- Version du serveur :  10.4.10-MariaDB
--- Version de PHP :  7.3.12
+-- Version de PHP :  7.4.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS `products` (
   `reference` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `purchasedate` date NOT NULL,
   `warrantydate` date NOT NULL,
-  `price` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `price` float NOT NULL,
   `purchaseticket` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `maintenance` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `usermanual` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
