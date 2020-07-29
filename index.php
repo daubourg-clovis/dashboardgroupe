@@ -26,20 +26,33 @@ $rows = $sth->fetchAll(PDO::FETCH_ASSOC);
 
 // }
 
+$id= '';
+$name = '';
+$ref = '';
+$category = '';
+$seller = '';
+$selleraddress = '';
+$purchasedate = '';
+$warrantydate = '';
+$price = '';
+$purchaseticket = '';
+$maintenance = '';
+$usermanual = '';
+
 $rows = array(
-    'ID' => $row['p.id'],
-    'name' => $row['p.name'],
-    'reference' => $row['p.reference'],
-    'category' => $row['c.type'],
-    'seller' => $row['s.name'],
-    'address' => $row['s.address'],
-    'purchasedate' => $dateFr->format(strtotime($row['p.purchasedate'])),
-    'warrantydate' => $dateFr->format(strtotime($row['p.warrantydate'])),
-    'price' => $row['p.price'],
-    'purchaseticket' => $row['p.purchaseticket'],
-    'maintenance' => $row['p.maintenance'],
-    'usermanual' => $row['p.usermanual'],
-    'edit' => '<a href="edit.php?edit=1&id='.$row['p.id'].'">Modifier</a>',
-    'delete' => '<a href="delete.php?id='.$row['p.id'].'">Supprimer</a>',
+    'ID' => $id['p.id'],
+    'name' => $name['p.name'],
+    'reference' => $ref['p.reference'],
+    'category' => $category['c.type'],
+    'seller' => $seller['s.name'],
+    'address' => $selleraddress['s.address'],
+    'purchasedate' => $dateFr->format(strtotime($purchasedate['p.purchasedate'])),
+    'warrantydate' => $dateFr->format(strtotime($warrantydate['p.warrantydate'])),
+    'price' => $price['p.price'],
+    'purchaseticket' => $purchaseticket['p.purchaseticket'],
+    'maintenance' => $maintenance['p.maintenance'],
+    'usermanual' => $usermanual['p.usermanual'],
+    'edit' => '<a href="edit.php?edit=1&id='.$id['p.id'].'">Modifier</a>',
+    'delete' => '<a href="delete.php?id='.$id['p.id'].'">Supprimer</a>',
 );
 

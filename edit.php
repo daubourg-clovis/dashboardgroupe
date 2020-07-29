@@ -1,4 +1,5 @@
 <?php
+    require_once('database.php');
 
     $id= '';
     $name = '';
@@ -62,4 +63,25 @@
     }
 
 
-    if($error === false)
+    if($error === false){
+        $sql = 'BEGIN; INSERT INTO products AS p (p.name, p.reference, p.purchasedate, p.warrantydate, p.price, p.purchaseticket, p.maintenance, p.usermanual, p.category_id, p.seller_id) VALUES (:name, :reference, :purchasedate, :warrantydate, :price, :purchaseticket, :maintenance, :usermanual, :category_id, :seller_id); INSERT INTO categories AS c (c.type) VALUES (LAST_INSERT_ID(), :type); INSERT INTO sellers AS s (s.name, s.address) VALUES(LAST_INSERT_ID(), :seller, :address) COMMIT;';
+
+        $sth = $pdo->prepare($sql);
+        $sth->bindParam(':name', $name, PDO::PARAM_STR);
+        $sth->bindParam(':reference', $ref, PDO::PARAM_STR);
+        $sth->bindParam(':type', $category, PDO::PARAM_STR);
+        $sth->bindParam(':seller', $seller, PDO::PARAM_STR);
+        $sth->bindParam(':selleraddress', $address, PDO::PARAM_STR);
+        $sth->bindValue(':purchasedate', strftime("%Y-%m-%d", strtotime($purchasedate)), PDO::PARAM_STR);
+        $sth->bindValue(':warrantydate', strftime("%Y-%m-%d", strtotime($warrantydate)), PDO::PARAM_STR);
+        $sth->bindParam(':price', $price, PDO::PARAM_STR);
+        $sth->bindParam(':purchaseticket', $purchaseticket, PDO::PARAM_STR);
+        $sth->bindParam(':maintenance', $maintenance, PDO::PARAM_STR);
+        $sth->bindParam(':usermanual', $usermanual, PDO::PARAM_STR);
+        $sth->bindValue(':category', rand(1, 9999));
+        $sth->bindValue(':seller_id', rand(1, 9999));
+
+        // $sth->execute();
+
+        // header('location: index.html.twig');
+    }
