@@ -22,7 +22,7 @@
         $sth = $pdo->prepare($sql);
         $sth->bindParam(':id', $_GET['id'], PDO::PARAM_INT);
         $sth->execute();
-        $entry = $sth->getch(PDO::FETCH_ASSOC);
+        $entry = $sth->fetch(PDO::FETCH_ASSOC);
 
         if(gettype($entry) === 'boolean'){
             header('location : index.html.twig');
@@ -30,17 +30,17 @@
         }
 
         $id= htmlentities($_GET['id']);
-        $name = $entry['p.name'];
-        $reference = $entry['p.reference'];
-        $category = $entry['c.type'];
-        $seller = $entry['s.name'];
-        $selleraddress = $entry['s.address'];
-        $purchasedate = $entry['p.purchasedate'];
-        $warrantydate = $entry['p.warrantydate'];
-        $price = $entry['p.price'];
-        $purchaseticket = $entry['p.purchase ticket'];
-        $maintenance = $entry['p.maintenance'];
-        $usermanual = $entry['p.usermanual'];
+        $name = $entry['name'];
+        $reference = $entry['reference'];
+        $category = $entry['type'];
+        $seller = $entry['name'];
+        $selleraddress = $entry['address'];
+        $purchasedate = $entry['purchasedate'];
+        $warrantydate = $entry['warrantydate'];
+        $price = $entry['price'];
+        $purchaseticket = $entry['purchaseticket'];
+        $maintenance = $entry['maintenance'];
+        $usermanual = $entry['usermanual'];
 
     }
 
@@ -83,14 +83,22 @@
         }else{
             $error = true;
         }
+
+        $seller = $_POST['seller'];
+        $selleraddress = $_POST['selleraddress'];
+        $usermanual = $_POST['usermanual'];
+        $category = $_POST['type'];
     }
 
 
     if($error === false){
         if(isset($_GET['edit']) && ($_GET['id'])){
-            $sql = 'UPDATE products SET name=:name, reference=:reference, purchasedate:purchasedate, warrantydate:warrantydate, price=:price, purchaseticet=:purchaseticket, maintenance=:maintenance, usermanual=:usermanual';
+          
+            $sql = 'UPDATE products SET name=:name, reference=:reference, purchasedate=:purchasedate, warrantydate=:warrantydate, price=:price, purchaseticket=:purchaseticket, maintenance=:maintenance, usermanual=:usermanual WHERE id=:id';            
+            $sth = $pdo->prepare($sql);
+            $sth->bindParam(':id', $_GET['id'], PDO::PARAM_INT);
         }else{
-            $sql = 'BEGIN;
+            $sql = "BEGIN;
             INSERT INTO categories (type) 
                 VALUES (:type);
                     SET @category_id = LAST_INSERT_ID();
@@ -99,13 +107,16 @@
                     SET @seller_id = LAST_INSERT_ID();
             INSERT INTO products (name, reference, purchasedate, warrantydate, price, purchaseticket, maintenance, usermanual, category_id, seller_id) 
                 VALUES (:name, :reference, :purchasedate, :warrantydate , :price, :purchaseticket, :maintenance, :usermanual, @category_id , @seller_id ); 
-            COMMIT;';
+            COMMIT;";
+            $sth = $pdo->prepare($sql);
+            
+            $sth->bindParam(':type', $category, PDO::PARAM_STR);
+            $sth->bindParam(':seller', $seller, PDO::PARAM_STR);
+            $sth->bindParam(':selleraddress', $selleraddress, PDO::PARAM_STR);
+
         }
 
-        $sth = $pdo->prepare($sql);
-        $sth->bindParam(':type', $category, PDO::PARAM_STR);
-        $sth->bindParam(':seller', $seller, PDO::PARAM_STR);
-        $sth->bindParam(':selleraddress', $selleraddress, PDO::PARAM_STR);
+            
         $sth->bindParam(':name', $name, PDO::PARAM_STR);
         $sth->bindParam(':reference', $reference, PDO::PARAM_STR);
         $sth->bindValue(':purchasedate', strftime("%Y-%m-%d", strtotime($purchasedate)), PDO::PARAM_STR);
@@ -119,6 +130,6 @@
 
        $sth->execute();
 
-
+  
     //  header('Location : index.html.twig');
     }
