@@ -3,7 +3,7 @@
 
     $id= '';
     $name = '';
-    $ref = '';
+    $reference = '';
     $category = '';
     $seller = '';
     $selleraddress = '';
@@ -19,6 +19,29 @@
     //Edit
     if(isset($_GET['edit']) && ($_GET['id'])){
         $sql = 'SELECT p.id, p.name, p.reference, c.type, p.purchasedate, p.warrantydate, p.price, p.purchaseticket, p.maintenance, p.usermanual, s.id, s.name, s.address FROM products AS p INNER JOIN sellers AS s INNER JOIN categories AS c WHERE p.id=:id ';
+        $sth = $pdo->prepare($sql);
+        $sth->bindParam(':id', $_GET['id'], PDO::PARAM_INT);
+        $sth->execute();
+        $entry = $sth->getch(PDO::FETCH_ASSOC);
+
+        if(gettype($entry) === 'boolean'){
+            header('location : index.html.twig');
+            exit;
+        }
+
+        $id= htmlentities($_GET['id']);
+        $name = $entry['p.name'];
+        $reference = $entry['p.reference'];
+        $category = $entry['c.type'];
+        $seller = $entry['s.name'];
+        $selleraddress = $entry['s.address'];
+        $purchasedate = $entry['p.purchasedate'];
+        $warrantydate = $entry['p.warrantydate'];
+        $price = $entry['p.price'];
+        $purchaseticket = $entry['p.purchase ticket'];
+        $maintenance = $entry['p.maintenance'];
+        $usermanual = $entry['p.usermanual'];
+
     }
 
 
@@ -64,24 +87,38 @@
 
 
     if($error === false){
-        $sql = 'BEGIN; INSERT INTO products AS p (p.name, p.reference, p.purchasedate, p.warrantydate, p.price, p.purchaseticket, p.maintenance, p.usermanual, p.category_id, p.seller_id) VALUES (:name, :reference, :purchasedate, :warrantydate, :price, :purchaseticket, :maintenance, :usermanual, :category_id, :seller_id); INSERT INTO categories AS c (c.type) VALUES (LAST_INSERT_ID(), :type); INSERT INTO sellers AS s (s.name, s.address) VALUES(LAST_INSERT_ID(), :seller, :address) COMMIT;';
+        if(isset($_GET['edit']) && ($_GET['id'])){
+            $sql = 'UPDATE products SET name=:name, reference=:reference, purchasedate:purchasedate, warrantydate:warrantydate, price=:price, purchaseticet=:purchaseticket, maintenance=:maintenance, usermanual=:usermanual';
+        }else{
+            $sql = 'BEGIN;
+            INSERT INTO categories (type) 
+                VALUES (:type);
+                    SET @category_id = LAST_INSERT_ID();
+            INSERT INTO sellers (name, address)
+                VALUES (:seller , :selleraddress);
+                    SET @seller_id = LAST_INSERT_ID();
+            INSERT INTO products (name, reference, purchasedate, warrantydate, price, purchaseticket, maintenance, usermanual, category_id, seller_id) 
+                VALUES (:name, :reference, :purchasedate, :warrantydate , :price, :purchaseticket, :maintenance, :usermanual, @category_id , @seller_id ); 
+            COMMIT;';
+        }
 
         $sth = $pdo->prepare($sql);
         $sth->bindParam(':name', $name, PDO::PARAM_STR);
-        $sth->bindParam(':reference', $ref, PDO::PARAM_STR);
+        $sth->bindParam(':reference', $reference, PDO::PARAM_STR);
         $sth->bindParam(':type', $category, PDO::PARAM_STR);
         $sth->bindParam(':seller', $seller, PDO::PARAM_STR);
-        $sth->bindParam(':selleraddress', $address, PDO::PARAM_STR);
+        $sth->bindParam(':selleraddress', $selleraddress, PDO::PARAM_STR);
         $sth->bindValue(':purchasedate', strftime("%Y-%m-%d", strtotime($purchasedate)), PDO::PARAM_STR);
         $sth->bindValue(':warrantydate', strftime("%Y-%m-%d", strtotime($warrantydate)), PDO::PARAM_STR);
         $sth->bindParam(':price', $price, PDO::PARAM_STR);
         $sth->bindParam(':purchaseticket', $purchaseticket, PDO::PARAM_STR);
         $sth->bindParam(':maintenance', $maintenance, PDO::PARAM_STR);
         $sth->bindParam(':usermanual', $usermanual, PDO::PARAM_STR);
-        $sth->bindValue(':category', rand(1, 9999));
-        $sth->bindValue(':seller_id', rand(1, 9999));
 
-        // $sth->execute();
+      
 
-        // header('location: index.html.twig');
+       $sth->execute();
+
+
+    //  header('Location : index.html.twig');
     }
