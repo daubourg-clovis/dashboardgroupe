@@ -103,11 +103,11 @@
         }
 
         $sth = $pdo->prepare($sql);
-        $sth->bindParam(':name', $name, PDO::PARAM_STR);
-        $sth->bindParam(':reference', $reference, PDO::PARAM_STR);
         $sth->bindParam(':type', $category, PDO::PARAM_STR);
         $sth->bindParam(':seller', $seller, PDO::PARAM_STR);
         $sth->bindParam(':selleraddress', $selleraddress, PDO::PARAM_STR);
+        $sth->bindParam(':name', $name, PDO::PARAM_STR);
+        $sth->bindParam(':reference', $reference, PDO::PARAM_STR);
         $sth->bindValue(':purchasedate', strftime("%Y-%m-%d", strtotime($purchasedate)), PDO::PARAM_STR);
         $sth->bindValue(':warrantydate', strftime("%Y-%m-%d", strtotime($warrantydate)), PDO::PARAM_STR);
         $sth->bindParam(':price', $price, PDO::PARAM_STR);
