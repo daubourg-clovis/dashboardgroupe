@@ -8,4 +8,4 @@
         $sth->execute();
     }
 
-header('Location: index.html.twig');
+header('Location: index.php');

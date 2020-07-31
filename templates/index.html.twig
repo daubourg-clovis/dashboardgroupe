@@ -1,0 +1,93 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+ 
+  <link href="https://uvc.one/upload/iblock/a4f/a4fa195b41beafcf172e2843a0bef744.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+
+<div class="container">
+    <div class="kek">
+  <h1>Purchase of materials</h1>
+  <p></p>   
+</div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th> ID </th>
+        <th>Name</th>
+        <th>Seller</th>
+        <!-- <th>Seller_</th> -->
+        <th>Reference</th>
+        <th>Category</th>
+        <th>Purchase_date</th>
+        <th>End_warranty</th>
+        <th>Price</th>
+        <th>Advices</th>
+        <th>Receipt_photo</th>
+        <th>Manual</th>
+        <th>Modify/Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+
+
+      {% for produit in data %}
+      <tr>
+
+
+
+
+        <td>{{ produit.id }}</td>
+        <td>{{produit.productname}}</td>
+        <td>{{produit.sellername}} {{produit.address}}</td>
+        <td>{{produit.reference}}</td>
+        <td>{{produit.type}}</td>
+        <td>{{produit.purchasedate}}</td>
+        <td>{{produit.warrantydate}}</td>
+        <td>{{produit.price}}</td>
+        <td>{{produit.maintenance}}</td>
+        <td>{{produit.purchaseticket}}</td>
+        <td>{{produit.usermanual}}</td>
+        <td><a href="edit.php?edit=1&id={{produit.id}}">Edit</a>/<a href="delete.php?id={{produit.id}}">Delete</a></td>
+    
+      </tr>
+     
+      {% endfor %}
+      
+        
+        
+      
+    </tbody>
+  </table>
+</div>
+
+
+<script type="text/javascript" src="script.js"></script>
+
+</body>
+</html>
+
+
+   <!--  <tr>
+        <td>{{ reference_number }}</td>
+        <td>{{ name }}</td>
+        <td>{{ category }}</td>
+        <td>{{ price }}</td>
+        <td>{{ buy_date }}</td>
+        <td>{{ action }}</td>
+   
+   
+    </tr>
+
+
+    -->
+
