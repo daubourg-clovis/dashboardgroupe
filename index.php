@@ -1,5 +1,16 @@
 <?php
+ require_once 'vendor/autoload.php';
     require_once('database.php');
+
+
+   
+
+    $loader = new \Twig\Loader\FilesystemLoader('templates');
+    $twig = new \Twig\Environment($loader, [
+        'cache' => false,
+    ]);
+
+    
 
 $dateFr = new IntlDateFormatter('fr_FR', IntlDateFormatter::SHORT, IntlDateFormatter::NONE);
 
@@ -56,3 +67,5 @@ foreach($rows as $row){
 //     'delete' => '<a href="delete.php?id='.$id['p.id'].'">Supprimer</a>',
 // );
 
+$template = $twig->load('index.html.twig');
+echo $template->render();
