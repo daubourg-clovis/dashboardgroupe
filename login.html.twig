@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% include "header.html" %}
+    <link rel="stylesheet" href="stylelogin.css">
+    <body>
+        <div class="container">
+            <div id="c_parent_login" class="columns is-centered is-desktop is-vcentered is-flex-touch">
+                <div class="column is-6 c_login">
+                    <h1 class="title is-2 has-text-centered">Login</h1>
+
+                    
+                    
+                    <form novalidate method="POST" id="f_login">
+                        
+                        <div class="field">
+                            <label for="id" class="label">Identifiant :</label>
+                            <div class="control has-icons-left">
+                                <input class="input is-medium" type="text" name="id" placeholder="Entrez votre identifiant" id="id" required >
+                                <div class="icon is-left">
+                                              
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label for="password" class="label">Mot de passe :</label>
+                            <div class="control has-icons-left">
+                                <input class="input is-medium" type="password" name="password" placeholder="Entrez votre mot de passe" id="password" required>
+                                <div class="icon is-left">
+                                        
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="control">
+                                <input type="submit" class="input button is-centered is-medium" name="login" value="Connexion">
+                            </div>
+                        </div>
+                    </form>
+                    <div id="check_login" class="verif"></div>
+                </div>
+            </div>
+        </div>
+        <script src="https://kit.fontawesome.com/6c7241f45d.js" crossorigin="anonymous"></script>
+        <script src="js/login.js"></script>
+    </body>
+</html>
