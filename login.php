@@ -4,13 +4,12 @@
 
 if(isset($_POST) && !empty($_POST['username']) && !empty($_POST['password'])){
     extract($_POST);
-    $sql = 'SELECT  username, pwd FROM users  WHERE user=:user AND pwd:pwd';
+    $sql = 'SELECT  username, pwd FROM users  WHERE username=:username';
     $sth = $pdo->prepare($sql);
-    $sth->bindParam(':user', $user, PDO::PARAM_STR);
-    $sth->bindParam(':pwd', $pwd, PDO::PARAM_STR);
+    $sth->bindParam(':username', $username, PDO::PARAM_STR);
     $sth->execute();
     $result = $sth->fetch(PDO::FETCH_ASSOC);
-        if(password_verify($pwd) == $password){
+        if(password_verify($_POST['password'], $result['pwd']) ){
             session_start();
             $_SESSION['username'] = $user;
             header('Location: index.php');

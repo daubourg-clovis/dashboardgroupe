@@ -1,7 +1,10 @@
 <?php
  require_once 'vendor/autoload.php';
     require_once('database.php');
-
+    if(!isset($_SESSION['username'])){
+        header('Location: login.php');
+        exit;
+    }
 
    
 
