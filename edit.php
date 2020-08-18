@@ -1,6 +1,7 @@
 <?php
  require_once 'vendor/autoload.php';
     require_once('database.php');
+    require_once('upload.php');
 
     $loader = new \Twig\Loader\FilesystemLoader('templates');
     $twig = new \Twig\Environment($loader, [
@@ -22,29 +23,7 @@
     $usermanual = '';
     $error = false;
 
-    // if(isset($_FILES['usermanual'])){
-    //     $errors = array();
-    //     $file_name = $_FILES['usermanual']['name'];
-    //     $file_size = $_FILES['usermanual']['size'];
-    //     $file_tmp = $_FILES['usermanual']['tmp_name'];
-    //     $file_type = $_FILES['usermanual']['type'];
-    //     $file_ext = strtolower(end(explode('.', $_FILES['usermanual']['name'])));
 
-    //     $extension = array('jpeg', 'gif', 'png', 'jpg', 'pdf');
-    //     if(in_array($file_ext, $extension) === false){
-    //         $errors[]= "file not allowed, please upload a picture or pdf file";
-    //     }
-
-    //     if($file_size > 2097152){
-    //         $errors[]= "File size must be lighter than 2Mb";
-    //     }
-
-    //     if(empty($errors) == true){
-    //         move_uploaded_file($file_tmp, "manual_img/".$file_name);
-    //     }
-
-
-    // }
 
 
     //Edit
@@ -89,13 +68,13 @@
         }else{
             $error = true;
         }
-        if(strlen(trim($_POST['purchasedate']) !==0)){
-            $purchasedate = trim($_POST['purchasedate']);
+        if(strlen(trim($_POST['purchase_date']) !==0)){
+            $purchasedate = trim($_POST['purchase_date']);
         }else{
             $error = true;
         }
-        if(strlen(trim($_POST['warrantydate']) !==0)){
-            $warrantydate = trim($_POST['warrantydate']);
+        if(strlen(trim($_POST['end_warranty']) !==0)){
+            $warrantydate = trim($_POST['end_warranty']);
         }else{
             $error = true;
         }
@@ -104,21 +83,23 @@
         }else{
             $error = true;
         }
-        if(strlen(trim($_POST['purchaseticket']) !==0)){
-            $purchaseticket = trim($_POST['purchaseticket']);
+        if(strlen(trim($_POST['image_product']) !==0)){
+            $purchaseticket = $_POST['image_product'];
         }else{
             $error = true;
         }
-        if(strlen(trim($_POST['maintenance']) !==0)){
-            $maintenance = trim($_POST['maintenance']);
+        if(strlen(trim($_POST['advices']) !==0)){
+            $maintenance = trim($_POST['advices']);
         }else{
             $error = true;
         }
 
-        $seller = $_POST['seller'];
-        $selleraddress = $_POST['selleraddress'];
-        $usermanual = $_POST['usermanual'];
-        $category = $_POST['type'];
+        $seller = trim($_POST['seller']);
+        $selleraddress = trim($_POST['selleraddress']);
+        $usermanual = $_POST['manual_product'];
+        $category = trim($_POST['category']);
+
+
         if($error === false){
             if(isset($_GET['edit']) && ($_GET['id'])){
               
@@ -133,8 +114,8 @@
                 INSERT INTO sellers (name, address)
                     VALUES (:seller , :selleraddress);
                         SET @seller_id = LAST_INSERT_ID();
-                INSERT INTO products (name, reference, purchasedate, warrantydate, price, purchaseticket, maintenance, usermanual, category_id, seller_id) 
-                    VALUES (:name, :reference, :purchasedate, :warrantydate , :price, :purchaseticket, :maintenance, :usermanual, @category_id , @seller_id ); 
+                INSERT INTO products (name, reference, purchasedate, warrantydate, price, purchaseticket, maintenance, usermanual,  category_id, seller_id) 
+                    VALUES (:name, :reference, :purchasedate, :warrantydate , :price, :purchaseticket, :maintenance, :usermanual,  @category_id , @seller_id ); 
                 COMMIT;";
                 $sth = $pdo->prepare($sql);
                 
@@ -158,7 +139,7 @@
     
            $sth->execute();
       
-           header('Location : index.php');
+        //    header('Location : index.php');
         };
     }
 
