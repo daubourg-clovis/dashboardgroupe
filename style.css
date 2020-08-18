@@ -1,3 +1,8 @@
+/*body {
+    background-color: gray !important;
+}
+*/
+
 .table {
     margin-top: 10rem;
 }
@@ -8,3 +13,8 @@
  
 }
 
+.logout {
+    margin-left: 100rem;
+   
+    
+}   

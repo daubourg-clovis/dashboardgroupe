@@ -4,21 +4,42 @@
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="style.css">
- 
+  
   <link href="https://uvc.one/upload/iblock/a4f/a4fa195b41beafcf172e2843a0bef744.css" rel="stylesheet">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+  <link rel="stylesheet" href="style.css">
+ 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 </head>
 <body>
 
+ 
+ 
+
+
 <div class="container">
     <div class="kek">
   <h1>Purchase of materials</h1>
-  <p></p>   
-</div>
+ 
+  </div>
+
+  <div class="logout">
+    <a href="logout.php">Logout</a>
+   </div>
+    <!-- Modal de déconnexion-->
+    <div id="deco" uk-modal >
+      <div class="uk-modal-dialog uk-modal-body uk-text-center uk-margin-auto-vertical">
+          <h1 class="warning">Déconnexion</h1>
+          <p>Êtes-vous sur de vouloir vous déconnecter?</p>
+          <p class="uk-text-center">
+              <button class="uk-button uk-button-default yes" id="validation" onclick="deco()" type="button" href="deconnexion.php">Oui</button>
+              <button class="uk-button uk-button-default uk-modal-close nope" type="button">Non</button>
+          </p>
+       </div>
+  </div>
   <table class="table">
     <thead>
       <tr>
@@ -69,13 +90,18 @@
     </tbody>
   </table>
   <p> <a href="edit.php">Ajouter</a></p>
+
+
+  
+
+
 </div>
 
 
+
+
+
 <script type="text/javascript" src="script.js"></script>
-
-
-
 
 
 </body>

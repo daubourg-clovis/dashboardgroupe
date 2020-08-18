@@ -17,19 +17,18 @@
 <div id="form">
   
     <form action="edit.php" method="post">
-        <div class="form-group">
-          <label for="exampleInputEmail1">ID</label>
-          <input type="text" class="form-control" id="exampleInput1" aria-describedby="emailHelp" placeholder="Enter ...">
-         
-        </div>
+        
         <div class="form-group">
           <label for="name">Name</label>
           <input type="text" class="form-control" id="exampleInput2" placeholder="Enter..." value="{{name}}" name="name">
         </div>
        
         <label for="seller">Seller</label>
-        <input type="text" class="form-control" id="exampleInput3" placeholder="Enter...">
+        <input type="text" class="form-control" id="exampleInput3" placeholder="Enter..." name="seller" text="Enter ...">
+        <input type="text" placeholder="Adresse ...">
+
         <select class="form-control custom" name="seller" id="selectseller" ></select>
+       
 
         <label for="reference">Reference</label>
         <input type="text" class="form-control" id="exampleInput4" placeholder="Enter ..." name="reference">
