@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  ven. 31 juil. 2020 à 09:21
+-- Généré le :  mar. 18 août 2020 à 14:27
 -- Version du serveur :  10.4.10-MariaDB
 -- Version de PHP :  7.4.0
 
@@ -35,40 +35,14 @@ CREATE TABLE IF NOT EXISTS `categories` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `type` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=67 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=143 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Déchargement des données de la table `categories`
 --
 
 INSERT INTO `categories` (`id`, `type`) VALUES
-(1, 'lumière'),
-(4, 'meubles'),
-(5, 'meubles'),
-(6, 'meubles'),
-(7, 'meubles'),
-(8, 'meubles'),
-(15, ''),
-(16, ''),
-(18, ''),
-(19, 'legumes'),
-(20, ''),
-(22, ''),
-(23, ''),
-(24, 'meubles'),
-(25, ''),
-(29, ''),
-(30, ''),
-(31, ''),
-(32, ''),
-(33, ''),
-(34, ''),
-(35, 'meubles'),
-(38, ''),
-(39, 'fruit'),
-(40, 'fruit'),
-(65, 'fruit'),
-(66, 'fruit');
+(142, 'meuble');
 
 -- --------------------------------------------------------
 
@@ -92,17 +66,14 @@ CREATE TABLE IF NOT EXISTS `products` (
   PRIMARY KEY (`id`),
   KEY `seller_id` (`seller_id`),
   KEY `category_id` (`category_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Déchargement des données de la table `products`
 --
 
 INSERT INTO `products` (`id`, `name`, `reference`, `purchasedate`, `warrantydate`, `price`, `purchaseticket`, `maintenance`, `usermanual`, `category_id`, `seller_id`) VALUES
-(7, 'fdfd', '745754', '1970-01-01', '1970-01-01', 12, 'pas cher', 'enlever la peau', 'nombres', 4, 4),
-(9, 'banane', '45', '1970-01-01', '1970-01-01', 6, 'okjh', 'enlever la peau', 'ne pas mettre au frigo', 6, 5),
-(29, 'fdfd', '45', '1970-01-01', '1970-01-01', 6, 'okjh', 'enlever la peau', 'ne pas mettre au frigo', 39, 38),
-(31, 'pomme', '745754', '1970-01-01', '1970-01-01', 12, 'pas cher', 'enlever la peau', 'nombres', 65, 64);
+(55, 'chambre', '222222', '1970-01-01', '1970-01-01', 15, 'github.png', 'press button', 'mail.png', 142, 141);
 
 -- --------------------------------------------------------
 
@@ -116,38 +87,14 @@ CREATE TABLE IF NOT EXISTS `sellers` (
   `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `address` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=142 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Déchargement des données de la table `sellers`
 --
 
 INSERT INTO `sellers` (`id`, `name`, `address`) VALUES
-(4, 'fdfd', 'fdfdfdf'),
-(5, 'IKEA', 'Dijon'),
-(6, 'IKEA', 'Dijon'),
-(7, 'IKEA', 'Dijon'),
-(14, '', ''),
-(15, '', ''),
-(17, '', ''),
-(18, 'biocoop', 'besançon'),
-(19, '', ''),
-(21, '', ''),
-(22, '', ''),
-(23, 'Fly', 'Dijon'),
-(24, '', ''),
-(28, '', ''),
-(29, '', ''),
-(30, '', ''),
-(31, '', ''),
-(32, '', ''),
-(33, '', ''),
-(34, 'Auchan', 'Dijon'),
-(37, '', ''),
-(38, 'marchÃ© bio', 'Dijon'),
-(39, 'marchÃ© bio', 'Dijon'),
-(64, 'marchÃ© bio', 'Dijon'),
-(65, 'marchÃ© bio', 'Dijon');
+(141, 'amazon', 'https://www.amazon.fr/');
 
 -- --------------------------------------------------------
 
@@ -158,7 +105,7 @@ INSERT INTO `sellers` (`id`, `name`, `address`) VALUES
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `username` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `pwd` varchar(50) COLLATE utf8_unicode_ci NOT NULL
+  `pwd` varchar(255) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -166,8 +113,8 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`username`, `pwd`) VALUES
-('admin', '*97E7471D816A37E38510728AEA47440F9C6E2585'),
-('Vanessa', '*23AE809DDACAF96AF0FD78ED04B6A265E05AA257');
+('admin', '$2y$12$BCK5zh6QTtlB0.rqQ63wW.bFPvZBf8.xYkFYI.GPFw9AWGBxbyNyG'),
+('test', '$2y$12$or.qs8xGSdmUim1W/A4KcepTtEcHCHBn80Sk/H44.QHjtKsxhi1Re');
 
 --
 -- Contraintes pour les tables déchargées
