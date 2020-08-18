@@ -15,6 +15,30 @@
     $usermanual = '';
     $error = false;
 
+    // if(isset($_FILES['usermanual'])){
+    //     $errors = array();
+    //     $file_name = $_FILES['usermanual']['name'];
+    //     $file_size = $_FILES['usermanual']['size'];
+    //     $file_tmp = $_FILES['usermanual']['tmp_name'];
+    //     $file_type = $_FILES['usermanual']['type'];
+    //     $file_ext = strtolower(end(explode('.', $_FILES['usermanual']['name'])));
+
+    //     $extension = array('jpeg', 'gif', 'png', 'jpg', 'pdf');
+    //     if(in_array($file_ext, $extension) === false){
+    //         $errors[]= "file not allowed, please upload a picture or pdf file";
+    //     }
+
+    //     if($file_size > 2097152){
+    //         $errors[]= "File size must be lighter than 2Mb";
+    //     }
+
+    //     if(empty($errors) == true){
+    //         move_uploaded_file($file_tmp, "manual_img/".$file_name);
+    //     }
+
+
+    // }
+
 
     //Edit
     if(isset($_GET['edit']) && ($_GET['id'])){
@@ -25,7 +49,7 @@
         $entry = $sth->fetch(PDO::FETCH_ASSOC);
 
         if(gettype($entry) === 'boolean'){
-            header('location : index.html.twig');
+            header('location : index.php');
             exit;
         }
 
@@ -131,5 +155,5 @@
        $sth->execute();
 
   
-    //  header('Location : index.html.twig');
+    //  header('Location : index.php');
     }
