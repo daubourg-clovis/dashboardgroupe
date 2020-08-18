@@ -83,8 +83,8 @@
         }else{
             $error = true;
         }
-        if(strlen(trim($_POST['image_product']) !==0)){
-            $purchaseticket = $_POST['image_product'];
+        if(strlen(trim($_FILES['image_product']) !==0)){
+            $purchaseticket = $img_name;
         }else{
             $error = true;
         }
@@ -96,7 +96,7 @@
 
         $seller = trim($_POST['seller']);
         $selleraddress = trim($_POST['selleraddress']);
-        $usermanual = $_POST['manual_product'];
+        $usermanual = $file_name;
         $category = trim($_POST['category']);
 
 
@@ -140,7 +140,7 @@
            $sth->execute();
       
         //    header('Location : index.php');
-        };
+        }
     }
 
 
