@@ -4,22 +4,19 @@
 
 if(isset($_POST) && !empty($_POST['username']) && !empty($_POST['password'])){
     extract($_POST);
-    $sql = 'SELECT  username, pwd FROM membre WHERE user=:user AND pwd:pwd';
+    $sql = 'SELECT  username, pwd FROM users  WHERE username=:username';
     $sth = $pdo->prepare($sql);
-    $sth->password_verify(':pwd');
-    $sth->bindParam(':user', $user, PDO::PARAM_STR);
+    $sth->bindParam(':username', $username, PDO::PARAM_STR);
     $sth->execute();
     $result = $sth->fetch(PDO::FETCH_ASSOC);
-    if(gettype($result) !== 'boolean'){
-        if($result['pwd'] == $password){
+        if(password_verify($_POST['password'], $result['pwd']) ){
             session_start();
             $_SESSION['username'] = $user;
-            header('Location: index.html.twig');
+            header('Location: index.php');
             exit;
         }else{
             echo 'Accès refusé';
         }
-    }
 }
 
 
