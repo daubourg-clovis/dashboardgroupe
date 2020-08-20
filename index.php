@@ -64,3 +64,5 @@ $rows = $sth->fetchAll(PDO::FETCH_ASSOC);
 //   var_dump ($rows); die();
 $template = $twig->load('index.html.twig');
 echo $template->render([ 'data'=> $rows ]);
+
+
