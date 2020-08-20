@@ -83,7 +83,7 @@
         }else{
             $error = true;
         }
-        if(strlen(trim($_FILES['image_product']) !==0)){
+        if($_FILES['image_product']['error'] == 0){
             $purchaseticket = $img_name;
         }else{
             $error = true;
@@ -93,7 +93,8 @@
         }else{
             $error = true;
         }
-
+        var_dump($error);
+        die();
         $seller = trim($_POST['seller']);
         $selleraddress = trim($_POST['selleraddress']);
         $usermanual = $file_name;

@@ -6,7 +6,8 @@ if(isset($_FILES['manual_product'])){
     $file_size = $_FILES['manual_product']['size'];
     $file_tmp = $_FILES['manual_product']['tmp_name'];
     $file_type = $_FILES['manual_product']['type'];
-    $file_ext = strtolower(end(explode('.', $_FILES['manual_product']['name'])));
+    $data = explode('.', $_FILES['manual_product']['name']);
+    $file_ext = strtolower($data[count($data) - 1]);
 
     $extension = array('jpeg', 'gif', 'png', 'jpg', 'pdf');
     if(in_array($file_ext, $extension) === false){
@@ -29,7 +30,8 @@ if(isset($_FILES['image_product'])){
     $img_size = $_FILES['image_product']['size'];
     $img_tmp = $_FILES['image_product']['tmp_name'];
     $img_type = $_FILES['image_product']['type'];
-    $img_ext = strtolower(end(explode('.', $_FILES['image_product']['name'])));
+    $data = explode('.', $_FILES['image_product']['name']);
+    $img_ext = strtolower($data[count($data) - 1]);
 
     $extension = array('jpeg', 'gif', 'png', 'jpg', 'pdf');
     if(in_array($img_ext, $extension) === false){
