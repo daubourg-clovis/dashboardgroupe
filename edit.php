@@ -93,8 +93,7 @@
         }else{
             $error = true;
         }
-        var_dump($error);
-        die();
+
         $seller = trim($_POST['seller']);
         $selleraddress = trim($_POST['selleraddress']);
         $usermanual = $file_name;
