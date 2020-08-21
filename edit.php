@@ -144,6 +144,12 @@
     }
 
 
+    $req = 'SELECT c.type, s.name, s.address FROM products AS p INNER JOIN sellers AS s ON p.seller_id = s.id INNER JOIN categories AS c ON p.category_id = c.id ';
+    $prep= $pdo->prepare($req);
+    $prep->execute();
+    $values = $prep->fetchAll(PDO::FETCH_ASSOC);
 
+    // var_dump($values);
+    // die;
     $template = $twig->load('submit.html.twig');
-    echo $template->render([]);
+    echo $template->render(['values' => $values]);
