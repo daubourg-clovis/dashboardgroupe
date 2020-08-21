@@ -24,19 +24,34 @@
         </div>
        
         <label for="seller">Seller</label>
-        <input type="text" class="form-control" id="exampleInput3" placeholder="Enter..." name="seller" text="Enter ...">
-        <input type="text" placeholder="Adresse ..." name="selleraddress">
 
-        <select class="form-control custom" name="seller" id="selectseller" ></select>
+        <select class="form-control custom" name="seller" id="selectseller" >
+          {% for option in values %}
+          <option value="{{option.name}} {{option.address}}">{{option.name}} : {{option.address}}</option>
+
+          {% endfor %}
+        </select>
+
+        <input type="text" class="form-control" id="exampleInput3" placeholder="Enter..." name="seller" text="Enter ...">
+        <input type="text" class="form-control" placeholder="Adresse ..." name="selleraddress"  placeholder="Default input">
+       
        
 
         <label for="reference">Reference</label>
         <input type="text" class="form-control" id="exampleInput4" placeholder="Enter ..." name="reference">
 
         <label for="category">Category</label>
-        <input type="text" class="form-control" id="exampleInput5" placeholder="Enter..." name="category">
-        <select class="form-control custom" name="seller" id="selectcategory" ></select>
 
+        <select class="form-control custom" name="seller" id="selectcategory" >
+          {% for option in values %}
+  
+          <option value="{{option.type}}">{{option.type}}</option>
+  
+          {% endfor %}
+        </select>
+
+        <input type="text" class="form-control" id="exampleInput5" placeholder="Enter..." name="category">
+       
         <label for="purchase_date">Purchase_date</label>
         <input type="date" class="form-control" id="exampleInput6" placeholder="Enter..." name="purchase_date">
 
