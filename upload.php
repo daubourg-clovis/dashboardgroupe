@@ -44,8 +44,6 @@ if(isset($_FILES['image_product'])){
 
     if(empty($errors) == true){
         move_uploaded_file($img_tmp, "receipt_photo/".$img_name);
-    }else{
-        print_r($errors);
     }
 
 }
