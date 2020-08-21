@@ -1,3 +1,6 @@
+// Pour le message de confirmation de déconnexion login
+
+
 const logout=document.getElementsByClassName("logout")[0];
 const cacher=document.getElementById("cacher");
 
@@ -13,3 +16,10 @@ cacher.addEventListener("click", function(){
 
     deco.classList.add("hidden");
 })
+
+
+// Pour le message de confirmation de suppression
+
+const deleteLinks = document.getElementsByClassName('delet');
+
+const btnYes = document.getElementById('validation');

@@ -99,6 +99,20 @@
 
 </div>
 
+<!-- Modal de confirmation de suppression de ligne-->
+
+<div id="modal" uk-modal>
+  <div class="uk-modal-dialog uk-modal-body uk-text-center uk-margin-auto-vertical">
+      <h1 class="warning">Suppression</h1>
+      <p>Êtes-vous sur de vouloir supprimer cette ligne?</p>
+      <p class="uk-text-center">
+      <div class="red">
+          <button class="uk-button uk-button-default yes" id="confirmation" onclick="trash()" type="button" href="delete.php">Oui</button>
+       </div>
+          <button class="uk-button uk-button-default uk-modal-close nope" type="button">Non</button>
+      </p>
+  </div>
+</div>
 
 
 
