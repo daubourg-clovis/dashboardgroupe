@@ -20,6 +20,9 @@ cacher.addEventListener("click", function(){
 
 // Pour le message de confirmation de suppression
 
-const deleteLinks = document.getElementsByClassName('delet');
+const modal = document.getElementById('modal');
 
-const btnYes = document.getElementById('validation');
+const confirmation = document.getElementById('confirmation');
+ modal.addEventListener("click", fucntion() {
+     const confirmation = document.getElementById('confirmation')
+ })
