@@ -26,6 +26,7 @@
 
 
 
+
     //Edit
     if(isset($_GET['edit']) && ($_GET['id'])){
         $sql = 'SELECT p.id, p.name, p.reference, c.type, p.purchasedate, p.warrantydate, p.price, p.purchaseticket, p.maintenance, p.usermanual, s.id, s.name, s.address FROM products AS p INNER JOIN sellers AS s INNER JOIN categories AS c WHERE p.id=:id ';
@@ -100,6 +101,7 @@
         $category = trim($_POST['category']);
 
 
+        
         if($error === false){
             if(isset($_GET['edit']) && ($_GET['id'])){
               
@@ -144,12 +146,11 @@
     }
 
 
-    $req = 'SELECT c.type, s.name, s.address FROM products AS p INNER JOIN sellers AS s ON p.seller_id = s.id INNER JOIN categories AS c ON p.category_id = c.id ';
+    $req = 'SELECT p.name AS productname, p.reference, c.type, p.purchasedate, p.warrantydate, p.price, p.purchaseticket, p.maintenance, p.usermanual, s.name AS sellername, s.address FROM products AS p INNER JOIN sellers AS s ON p.seller_id = s.id INNER JOIN categories AS c ON p.category_id = c.id ';
     $prep= $pdo->prepare($req);
     $prep->execute();
     $values = $prep->fetchAll(PDO::FETCH_ASSOC);
 
-    // var_dump($values);
-    // die;
+
     $template = $twig->load('submit.html.twig');
     echo $template->render(['values' => $values]);

@@ -16,7 +16,7 @@
 
 <div id="form">
   
-    <form action="edit.php" method="post">
+    <form action="edit.php" method="post" enctype="multipart/form-data">
         
         <div class="form-group">
           <label for="name">Name</label>
@@ -29,7 +29,7 @@
 
         <select class="form-control custom" name="seller" id="selectseller" >
           {% for option in values %}
-          <option value="{{option.name}} {{option.address}}">{{option.name}} : {{option.address}}</option>
+          <option value="{{option.sellername}} {{option.address}}">{{option.sellername}} : {{option.address}}</option>
 
           {% endfor %}
         </select>
@@ -76,6 +76,7 @@
           <!-- receipt image upload -->
           <div class="col-4 form-group custom-file">
               <input type="file" class="custom-file-input" id="image_productInput" name="image_product"/>
+              <input type="hidden" name="MAX_FILE_SIZE" value="2097152" />
               <label class="custom-file-label" for="image_productInput">Upload receipt</label>
               <div class="invalid-feedback">Please upload the receipt</div>
           </div>
@@ -83,6 +84,7 @@
           <!-- manual upload -->
           <div class="col-4 offset-2 form-group custom-file">
               <input type="file" class="custom-file-input" id="manual_productInput" name="manual_product"/>
+              <input type="hidden" name="MAX_FILE_SIZE" value="2097152" />
               <label class="custom-file-label" for="manual_productInput">Upload manual</label>
           </div>
       </div>
