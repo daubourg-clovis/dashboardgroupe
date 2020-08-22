@@ -20,14 +20,14 @@
         
         <div class="form-group">
           <label for="name">Name</label>
-          <input type="text" class="form-control" id="exampleInput2" placeholder="Enter..." value="{{name}}" name="name" >
+          <input type="text" class="form-control" id="exampleInput2" placeholder="Enter..." value="{{name}}" name="name" required>
           <div class="invalid-feedback">Please choose a name</div>
         </div>
        
 
         <label for="seller">Seller</label>
 
-        <select class="form-control custom" name="seller" id="selectseller" >
+        <select class="form-control custom" name="seller" id="selectseller">
           {% for option in values %}
           <option value="{{option.sellername}} {{option.address}}">{{option.sellername}} : {{option.address}}</option>
 
@@ -95,9 +95,9 @@
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
    
-
+   <a class="btn btn-primary" href="index.php"> Back</a>
  
-
+   
 
  
 

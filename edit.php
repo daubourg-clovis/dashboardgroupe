@@ -143,9 +143,11 @@
       
         //    header('Location : index.php');
         }
+
+        header('Location: index.php');
     }
 
-
+   
     $req = 'SELECT p.name AS productname, p.reference, c.type, p.purchasedate, p.warrantydate, p.price, p.purchaseticket, p.maintenance, p.usermanual, s.name AS sellername, s.address FROM products AS p INNER JOIN sellers AS s ON p.seller_id = s.id INNER JOIN categories AS c ON p.category_id = c.id ';
     $prep= $pdo->prepare($req);
     $prep->execute();

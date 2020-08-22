@@ -20,3 +20,16 @@
 }   
 
 .hidden {display:none;}
+
+
+#modal {
+
+
+margin-right: 20rem !important; 
+position: fixed!important;
+left: 100rem!important;
+
+border: 1px solid!important;
+padding: 3rem!important;
+background-color: white;
+}

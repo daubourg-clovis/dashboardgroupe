@@ -23,6 +23,20 @@ cacher.addEventListener("click", function(){
 const modal = document.getElementById('modal');
 
 const confirmation = document.getElementById('confirmation');
- modal.addEventListener("click", fucntion() {
-     const confirmation = document.getElementById('confirmation')
+ confirmation.addEventListener("click", function() {
+     modal.classList.add("hidden");
  })
+
+   const nodelete = document.getElementById("nodelete");
+ nodelete.addEventListener("click", function(){
+   modal.classList.add("hidden");
+
+    
+})
+
+
+const dlt = document.getElementById("dlt");
+ dlt.addEventListener("click", function(){
+   modal.classList.remove("hidden");
+
+})
