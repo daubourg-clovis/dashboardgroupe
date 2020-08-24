@@ -42,7 +42,7 @@
           </p>
        </div>
   </div>
-  <table class="table table-hover table-striped table-bordered">
+  <table class="table">
     <thead>
       <tr>
         <th> ID </th>
@@ -80,7 +80,7 @@
         <td>{{produit.maintenance}}</td>
         <td><a href="receipt_photo/{{produit.purchaseticket}}" target="_blank" rel="noopener noreferrer">{{produit.purchaseticket}}</a></td>
         <td><a href="manual_img/{{produit.usermanual}}" target="_blank" rel="noopener noreferrer">{{produit.usermanual}}</a></td>
-        <td><a href="edit.php?edit=1&id={{produit.id}}">Edit</a>/ <a href="#" id="dlt">Delete</a>
+        <td><a href="edit.php?edit=1&id={{produit.id}}">Edit</a>/ <a href="#" data-id="{{produit.id}}" class="dlt">Delete</a>
         
         <!-- Modal de confirmation de suppression de ligne-->
 
