@@ -20,27 +20,30 @@ cacher.addEventListener("click", function(){
 
 // Pour le message de confirmation de suppression
 
-const modal = document.getElementById('modal');
+ 
 
-const confirmation = document.getElementById('confirmation');
- confirmation.addEventListener("click", function() {
-     modal.classList.add("hidden");
- });
+ const confirmation = document.getElementById('confirmation');
+  confirmation.addEventListener("click", function() {
+      modal.classList.add("hidden");
+  });
 
-   const nodelete = document.getElementById("nodelete");
+  const nodelete = document.getElementById("nodelete");
  nodelete.addEventListener("click", function(){
    modal.classList.add("hidden");
 
     
-});
+ });
 
 
-const dlts = document.getElementsByClassName("dlt");
-console.log(dlts)
-for(let dlt of dlts) { console.log(dlt)
- dlt.addEventListener("click", function(){
+ const dlts = document.getElementsByClassName("dlt");
+ console.log(dlts)
+ for(let dlt of dlts) { console.log(dlt)
   
+ dlt.addEventListener("click", function(e){
+  let id = this.getAttribute("data-id");
+  console.log(id);
+  const modal = document.getElementById('modal'+id);
    modal.classList.remove("hidden");
-
+  
 })};
 

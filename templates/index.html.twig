@@ -84,7 +84,7 @@
         
         <!-- Modal de confirmation de suppression de ligne-->
 
-        <div id="modal" uk-modal class="hidden">
+         <div id="modal{{produit.id}}" uk-modal class="hidden">
           <div class="uk-modal-dialog uk-modal-body uk-text-center uk-margin-auto-vertical">
               <h1 class="warning">Suppression</h1>
               <p>Êtes-vous sur de vouloir supprimer cette ligne?</p>
@@ -95,8 +95,11 @@
                   <button class="uk-button uk-button-default uk-modal-close nope" id="nodelete">Non</button>
               </p>
           </div>
-        </div>
+        </div> 
+     
+
       </td>
+
     
       </tr>
      
