@@ -19,7 +19,7 @@ if(isset($_FILES['manual_product'])){
     }
 
     if(empty($errors) == true){
-        move_uploaded_file($file_tmp, "manual_img/".$file_name);
+        move_uploaded_file($file_tmp, "manual_img".DIRECTORY_SEPARATOR.$file_name);
     }
 
 }
@@ -43,7 +43,7 @@ if(isset($_FILES['image_product'])){
     }
 
     if(empty($errors) == true){
-        move_uploaded_file($img_tmp, "receipt_photo/".$img_name);
+        move_uploaded_file($img_tmp, "receipt_photo".DIRECTORY_SEPARATOR.$img_name);
     }
 
 }
