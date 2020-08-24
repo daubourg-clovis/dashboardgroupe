@@ -1,4 +1,4 @@
- 
+ <!DOCTYPE html>
  
 
 <html lang="en">
@@ -10,15 +10,11 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="styleform.css">
-    <title> </title>
+    <title>Add</title>
   </head>
   <body> 
 
 <div id="form">
-
-  {% for option in values %}
-   
-   {% endfor %}
 
 
     <form action="edit.php" method="post" enctype="multipart/form-data">
@@ -40,8 +36,8 @@
           {% endfor %}
         </select>
 
-        <input type="text" class="form-control" id="exampleInput3" placeholder="Enter..." name="seller" text="Enter ..." required>
-        <input type="text" class="form-control" placeholder="Adresse ..." name="selleraddress"  placeholder="Default input" value="{{seller}}" required>
+        <input type="text" class="form-control" id="exampleInput3" placeholder="Seller name" name="seller" text="Enter ..." required>
+        <input type="text" class="form-control" placeholder="Address or URL..." name="selleraddress"  placeholder="Default input" value="{{seller}}" required>
        
        
 
@@ -100,6 +96,9 @@
       
 
         <button type="submit" class="btn btn-primary">Submit</button>
+
+        <input type="hidden" name="edit" value="1">
+        <input type="hidden" name="id" value="{{values.id}}">
       </form>
    
    <a class="btn btn-primary" href="index.php"> Back</a>
