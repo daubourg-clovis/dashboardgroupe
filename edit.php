@@ -153,6 +153,9 @@
     $prep->execute();
     $values = $prep->fetchAll(PDO::FETCH_ASSOC);
 
-
+    var_dump($name);
+    var_dump($id);
+    var_dump($seller);
+    var_dump($reference);
     $template = $twig->load('submit.html.twig');
     echo $template->render(['values' => $values]);

@@ -40,3 +40,4 @@ const dlt = document.getElementById("dlt");
    modal.classList.remove("hidden");
 
 })
+
