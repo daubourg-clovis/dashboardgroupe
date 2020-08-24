@@ -25,19 +25,22 @@ const modal = document.getElementById('modal');
 const confirmation = document.getElementById('confirmation');
  confirmation.addEventListener("click", function() {
      modal.classList.add("hidden");
- })
+ });
 
    const nodelete = document.getElementById("nodelete");
  nodelete.addEventListener("click", function(){
    modal.classList.add("hidden");
 
     
-})
+});
 
 
-const dlt = document.getElementById("dlt");
+const dlts = document.getElementsByClassName("dlt");
+console.log(dlts)
+for(let dlt of dlts) { console.log(dlt)
  dlt.addEventListener("click", function(){
+  
    modal.classList.remove("hidden");
 
-})
+})};
 

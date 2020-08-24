@@ -33,6 +33,7 @@
         <label for="seller">Seller</label>
 
         <select class="form-control custom" name="seller" id="selectseller">
+          <option selected value="">select seller</option>
           {% for option in values %}
           <option value="{{option.sellername}} {{option.address}}">{{option.sellername}} : {{option.address}}</option>
 
@@ -50,6 +51,7 @@
         <label for="category">Category</label>
 
         <select class="form-control custom" name="seller" id="selectcategory" >
+          <option selected value="">select category</option>
           {% for option in values %}
   
           <option value="{{option.type}}">{{option.type}}</option>
