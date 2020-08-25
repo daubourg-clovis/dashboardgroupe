@@ -27,12 +27,14 @@ cacher.addEventListener("click", function(){
       modal.classList.add("hidden");
   });
 
-  const nodelete = document.getElementById("nodelete");
- nodelete.addEventListener("click", function(){
-   modal.classList.add("hidden");
-
-    
- });
+  function nodelete(idproduit){
+    const modal = document.getElementById('modal'+idproduit);
+        modal.classList.add("hidden");
+     
+         
+      
+    }
+  
 
 
  const dlts = document.getElementsByClassName("dlt");

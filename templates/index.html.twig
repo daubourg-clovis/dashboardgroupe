@@ -92,7 +92,7 @@
               <div class="red">
                   <button class="uk-button uk-button-default yes" id="confirmation" onclick="trash()" ><a href="delete.php?id={{produit.id}}">Oui </a></button>
               </div>
-                  <button class="uk-button uk-button-default uk-modal-close nope" id="nodelete">Non</button>
+                  <button class="uk-button uk-button-default uk-modal-close nope" onclick="nodelete({{produit.id}})" id="nodelete">Non</button>
               </p>
           </div>
         </div> 

@@ -47,21 +47,24 @@ document.addEventListener("DOMContentLoaded", function() {
         };
     
 });
+ // seller
+ const selectseller = document.getElementById("selectseller");
 
-document.addEventListener("DOMContentLoaded", function() {
-    var values  = document.getElementById("exampleInput3");
-   
-        values.oninvalid = function(e) {
-            e.target.setCustomValidity("");
-            if (!e.target.validity.valid) {
-                e.target.setCustomValidity("Please enter a seller address");
-            }
-        };
-        values.oninput = function(e) {
-            e.target.setCustomValidity("");
-        };
+ var change = function(){
+ 
+     var values  = document.getElementById("exampleInput3");
     
-});
+     if(selectseller.value==""){
+         values.required= true;
+     }
+     else{
+         values.required=false;
+     }
+ }
+ change();
+ selectseller.addEventListener("change", change );
+ 
+
 
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -78,10 +81,33 @@ document.addEventListener("DOMContentLoaded", function() {
         };
     
 });
+// category
+const selectcategory = document.getElementById("selectcategory");
 
+var change = function(){
 
-document.addEventListener("DOMContentLoaded", function() {
     var values  = document.getElementById("exampleInput5");
+    
+    if(selectcategory.value==""){
+        values.required= true;
+    }
+    else{
+        values.required=false;
+    }
+}
+change();
+selectcategory.addEventListener("change", change );
+
+
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", function()
+
+{
+   
    
         values.oninvalid = function(e) {
             e.target.setCustomValidity("");
