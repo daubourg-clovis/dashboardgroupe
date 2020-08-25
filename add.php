@@ -3,6 +3,12 @@
     require_once('database.php');
     require_once('upload.php');
 
+    // session_start();
+    // if(!isset($_SESSION['username'])){
+    //     header('Location: login.php');
+    //     exit;
+    // }
+
     $loader = new \Twig\Loader\FilesystemLoader('templates');
     $twig = new \Twig\Environment($loader, [
         'cache' => false,
