@@ -27,39 +27,15 @@
     $purchaseticket = '';
     $maintenance = '';
     $usermanual = '';
+    $categoryid = '';
+    $sellerid = '';
     $error = false;
 
 
 
 
 
-    //Edit
-    if(isset($_GET['edit']) && ($_GET['id'])){
-        $sql = 'SELECT p.id, p.name, p.reference, c.type, p.purchasedate, p.warrantydate, p.price, p.purchaseticket, p.maintenance, p.usermanual, s.id, s.name, s.address FROM products AS p INNER JOIN sellers AS s INNER JOIN categories AS c WHERE p.id=:id ';
-        $sth = $pdo->prepare($sql);
-        $sth->bindParam(':id', $_GET['id'], PDO::PARAM_INT);
-        $sth->execute();
-        $entry = $sth->fetch(PDO::FETCH_ASSOC);
 
-        if(gettype($entry) === 'boolean'){
-            header('location : index.php');
-            exit;
-        }
-
-        $id= htmlentities($_GET['id']);
-        $name = $entry['name'];
-        $reference = $entry['reference'];
-        $category = $entry['type'];
-        $seller = $entry['name'];
-        $selleraddress = $entry['address'];
-        $purchasedate = $entry['purchasedate'];
-        $warrantydate = $entry['warrantydate'];
-        $price = $entry['price'];
-        $purchaseticket = $entry['purchaseticket'];
-        $maintenance = $entry['maintenance'];
-        $usermanual = $entry['usermanual'];
-
-    }
 
 
 
@@ -105,16 +81,66 @@
         $selleraddress = trim($_POST['selleraddress']);
         $usermanual = $file_name;
         $category = trim($_POST['category']);
+        $sellerid = trim($_POST['sellerid']);
+        $categoryid = trim($_POST['categoryid']);
 
 
-        
-        if($error === false){
-            if(isset($_GET['edit']) && ($_GET['id'])){
-              
-                $sql = 'UPDATE products SET name=:name, reference=:reference, purchasedate=:purchasedate, warrantydate=:warrantydate, price=:price, purchaseticket=:purchaseticket, maintenance=:maintenance, usermanual=:usermanual WHERE id=:id';            
-                $sth = $pdo->prepare($sql);
-                $sth->bindParam(':id', $_GET['id'], PDO::PARAM_INT);
+        $flag = false;
+        if (empty($_POST['seller'])&& empty($_POST['category']) && empty($_POST['selleraddress'])){
+            $flag = 1;
+        }
+        if(!empty($_POST['seller']) && !empty($_POST['selleraddress'])){
+            $flag = 2;
+        }
+
+        if(!empty($_POST['category'])){
+            if($flag == 2){
+                $flag = 4;
             }else{
+                
+                $flag = 3;
+            }
+        }
+
+        if($error === false){
+            switch($flag){
+
+                    case 1:
+                $sql= 'INSERT INTO products (name, reference, purchasedate, warrantydate, price, purchaseticket, maintenance, usermanual,  category_id, seller_id) 
+                    VALUES (:name, :reference, :purchasedate, :warrantydate , :price, :purchaseticket, :maintenance, :usermanual,  :categoryid , :sellerid )';
+                $sth = $pdo->prepare($sql);
+                $sth->bindParam(':categoryid', $categoryid, PDO::PARAM_STR);
+                $sth->bindParam(':sellerid', $sellerid, PDO::PARAM_STR);
+                    break;
+                    case 2:
+
+                $sql = "BEGIN;
+                INSERT INTO sellers (name, address)
+                    VALUES (:seller , :selleraddress);
+                        SET @seller_id = LAST_INSERT_ID();
+                INSERT INTO products (name, reference, purchasedate, warrantydate, price, purchaseticket, maintenance, usermanual,  category_id, seller_id) 
+                    VALUES (:name, :reference, :purchasedate, :warrantydate , :price, :purchaseticket, :maintenance, :usermanual,  :categoryid , @seller_id ); 
+                COMMIT;";
+                $sth = $pdo->prepare($sql);
+                $sth->bindParam(':categoryid', $categoryid, PDO::PARAM_STR);
+                $sth->bindParam(':seller', $seller, PDO::PARAM_STR);
+                $sth->bindParam(':selleraddress', $selleraddress, PDO::PARAM_STR);
+                    break;
+                    case 3:
+                $sql ="BEGIN;
+                INSERT INTO categories (type) 
+                    VALUES (:type);
+                        SET @category_id = LAST_INSERT_ID();
+                INSERT INTO products (name, reference, purchasedate, warrantydate, price, purchaseticket, maintenance, usermanual,  category_id, seller_id) 
+                    VALUES (:name, :reference, :purchasedate, :warrantydate , :price, :purchaseticket, :maintenance, :usermanual,  @category_id , :sellerid ); 
+                COMMIT;";
+                $sth = $pdo->prepare($sql);
+                $sth->bindParam(':sellerid', $sellerid, PDO::PARAM_STR);
+                $sth->bindParam(':type', $category, PDO::PARAM_STR);
+                    break;
+                case 4: 
+                
+                
                 $sql = "BEGIN;
                 INSERT INTO categories (type) 
                     VALUES (:type);
@@ -130,6 +156,8 @@
                 $sth->bindParam(':type', $category, PDO::PARAM_STR);
                 $sth->bindParam(':seller', $seller, PDO::PARAM_STR);
                 $sth->bindParam(':selleraddress', $selleraddress, PDO::PARAM_STR);
+                break;
+                default;
     
             }
     
@@ -144,17 +172,18 @@
             $sth->bindParam(':usermanual', $usermanual, PDO::PARAM_STR);
     
           
-    
+            
            $sth->execute();
-      
            
-                   header('Location: index.php');
+            
 
+           header('Location: index.php');
         }
+
     }
 
    
-    $req = 'SELECT p.id, p.name AS productname, p.reference, c.type, p.purchasedate, p.warrantydate, p.price, p.purchaseticket, p.maintenance, p.usermanual, s.name AS sellername, s.address FROM products AS p INNER JOIN sellers AS s ON p.seller_id = s.id INNER JOIN categories AS c ON p.category_id = c.id ';
+    $req = 'SELECT p.id, p.name AS productname, p.reference, c.id AS categoryid, c.type, p.purchasedate, p.warrantydate, p.price, p.purchaseticket, p.maintenance, p.usermanual, s.id AS sellerid, s.name AS sellername, s.address FROM products AS p INNER JOIN sellers AS s ON p.seller_id = s.id INNER JOIN categories AS c ON p.category_id = c.id ';
     $prep= $pdo->prepare($req);
     $prep->execute();
     $values = $prep->fetchAll(PDO::FETCH_ASSOC);
