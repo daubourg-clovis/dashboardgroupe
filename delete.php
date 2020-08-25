@@ -1,5 +1,10 @@
 <?php
     require_once('database.php');
+    // session_start();
+    // if(!isset($_SESSION['username'])){
+    //     header('Location: login.php');
+    //     exit;
+    // }
 
     if(isset($_GET['id'])){
         $req = 'SELECT usermanual, purchaseticket FROM products WHERE id=:id';

@@ -47,5 +47,5 @@ cacher.addEventListener("click", function(){
   const modal = document.getElementById('modal'+id);
    modal.classList.remove("hidden");
   
-})};
+})}
 

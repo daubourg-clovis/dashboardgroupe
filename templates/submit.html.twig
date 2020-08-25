@@ -31,7 +31,7 @@
         <select class="form-control custom" name="seller" id="selectseller">
           <option selected value="">select seller</option>
           {% for option in values %}
-          <option value="{{option.sellername}} {{option.address}}">{{option.sellername}} : {{option.address}}</option>
+          <option value="{{option.sellerid}}">{{option.sellername}} : {{option.address}}</option>
 
           {% endfor %}
         </select>
@@ -50,7 +50,7 @@
           <option selected value="">select category</option>
           {% for option in values %}
   
-          <option value="{{option.type}}">{{option.type}}</option>
+          <option value="{{option.category}}">{{option.type}}</option>
   
           {% endfor %}
         </select>
