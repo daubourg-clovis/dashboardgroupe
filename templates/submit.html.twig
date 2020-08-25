@@ -17,7 +17,7 @@
 <div id="form">
 
 
-    <form action="edit.php" method="post" enctype="multipart/form-data">
+    <form action="add.php" method="post" enctype="multipart/form-data">
         
         <div class="form-group">
           <label for="name">Name</label>
@@ -28,7 +28,7 @@
 
         <label for="seller">Seller</label>
 
-        <select class="form-control custom" name="seller" id="selectseller">
+        <select class="form-control custom" name="sellerid" id="selectseller">
           <option selected value="">select seller</option>
           {% for option in values %}
           <option value="{{option.sellerid}}">{{option.sellername}} : {{option.address}}</option>
@@ -46,11 +46,11 @@
 
         <label for="category">Category</label>
 
-        <select class="form-control custom" name="category" id="selectcategory" >
+        <select class="form-control custom" name="categoryid" id="selectcategory" >
           <option selected value="">select category</option>
           {% for option in values %}
   
-          <option value="{{option.category}}">{{option.type}}</option>
+          <option value="{{option.categoryid}}">{{option.type}}</option>
   
           {% endfor %}
         </select>
