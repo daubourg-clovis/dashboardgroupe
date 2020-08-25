@@ -3,6 +3,12 @@
     require_once('database.php');
     require_once('upload.php');
 
+    // session_start();
+    // if(!isset($_SESSION['username'])){
+    //     header('Location: login.php');
+    //     exit;
+    // }
+
     $loader = new \Twig\Loader\FilesystemLoader('templates');
     $twig = new \Twig\Environment($loader, [
         'cache' => false,
@@ -148,7 +154,7 @@
     }
 
    
-    $req = 'SELECT p.id, p.name AS productname, p.reference, c.type, p.purchasedate, p.warrantydate, p.price, p.purchaseticket, p.maintenance, p.usermanual, s.name AS sellername, s.address FROM products AS p INNER JOIN sellers AS s ON p.seller_id = s.id INNER JOIN categories AS c ON p.category_id = c.id ';
+    $req = 'SELECT p.id, p.name AS productname, p.reference, c.id AS categoryid, c.type, p.purchasedate, p.warrantydate, p.price, p.purchaseticket, p.maintenance, p.usermanual, s.id AS sellerid, s.name AS sellername, s.address FROM products AS p INNER JOIN sellers AS s ON p.seller_id = s.id INNER JOIN categories AS c ON p.category_id = c.id ';
     $prep= $pdo->prepare($req);
     $prep->execute();
     $values = $prep->fetchAll(PDO::FETCH_ASSOC);
