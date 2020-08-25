@@ -36,8 +36,8 @@
           {% endfor %}
         </select>
 
-        <input type="text" class="form-control" id="exampleInput3" placeholder="Seller name" name="seller" text="Enter ..." >
-        <input type="text" class="form-control" placeholder="Address or URL..." name="selleraddress"  placeholder="Default input" value="{{seller}}" >
+        <input type="text" class="form-control" id="exampleInput3" placeholder="Seller name" name="seller" text="Enter ..."   required>
+        <input type="text" class="form-control" placeholder="Address or URL..." name="selleraddress"  placeholder="Default input" value="{{seller}}" required >
        
        
 
@@ -55,7 +55,7 @@
           {% endfor %}
         </select>
 
-        <input type="text" class="form-control" id="exampleInput5" placeholder="Enter..." name="category" value="{{category}}" >
+        <input type="text" class="form-control" id="exampleInput5" placeholder="Enter..." name="category" value="{{category}}" required >
        
         <label for="purchase_date">Purchase_date</label>
         <input type="date" class="form-control" id="exampleInput6" placeholder="Enter..." name="purchase_date" value="{{purcahse_date}}" required>
@@ -100,9 +100,9 @@
 
       
       </form>
-   
+   <div id="back">
    <a class="btn btn-primary" href="index.php"> Back</a>
- 
+  </div>
    
 
  

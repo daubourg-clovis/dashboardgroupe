@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function() {
         values.oninvalid = function(e) {
             e.target.setCustomValidity("");
             if (!e.target.validity.valid) {
-                e.target.setCustomValidity("This field cannot be left blank");
+                e.target.setCustomValidity("Please enter a name");
             }
         };
         values.oninput = function(e) {
@@ -81,17 +81,17 @@ document.addEventListener("DOMContentLoaded", function() {
         };
     
 });
-// category
+ //category
 const selectcategory = document.getElementById("selectcategory");
 
-var change = function(){
+ var change = function(){
 
-    var values  = document.getElementById("exampleInput5");
+     var values  = document.getElementById("exampleInput5");
     
-    if(selectcategory.value==""){
+     if(selectcategory.value==""){
         values.required= true;
     }
-    else{
+     else{
         values.required=false;
     }
 }
